@@ -28,11 +28,11 @@ CREATE TABLE IF NOT EXISTS events (
 
 CREATE TABLE IF NOT EXISTS bookings (
     id SERIAL PRIMARY KEY,
-    event_id INT REFERENCES events(id) ON DELETE CASCADE,
+    event_id INT NOT NULL REFERENCES events(id) ON DELETE CASCADE,
     attendee_id INT NOT NULL REFERENCES users(id),
-    ticket_booked INT NOT NULL CHECK (ticket_booked > 0),
+    tickets_booked INT NOT NULL CHECK (ticket_booked > 0),
     total_price NUMERIC(10,2) NOT NULL CHECK (total_price >= 0),
-    status VARCHAR(20) NOT NULL DEFAULT 'confirmed',
+    status VARCHAR(20) NOT NULL DEFAULT 'confirmed'
         CHECK(status IN ('confirmed','cancelled')),
     created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
