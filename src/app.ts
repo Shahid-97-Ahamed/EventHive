@@ -6,10 +6,18 @@ const app:Application =express();
 
 app.use(cors())
 app.use(express.json()); //req.body te jeson pawar jonno
-//test route
-app.use("/test-error",()=>{
-    throw new AppError(400,"Test Error")
+
+app.get("/",(req:Request,res:Response)=>{
+    res.status(200).json({
+        success:true,
+        message:"EventHive API is running"
+    })
 })
+
+// //test route
+// app.use("/test-error",()=>{
+//     throw new AppError(400,"Test Error")
+// })
 
 //if any typr if route don't match!!!
 app.use((_req,_res,next)=>{
@@ -19,11 +27,6 @@ app.use((_req,_res,next)=>{
 //at last
 app.use(errorHandler)
 
-app.get("/",(req:Request,res:Response)=>{
-    res.status(200).json({
-        success:true,
-        message:"EventHive API is running"
-    })
-})
+
 
 export default app;
