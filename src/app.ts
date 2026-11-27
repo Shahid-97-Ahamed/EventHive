@@ -2,6 +2,7 @@ import express, { type Application, type Request, type Response } from "express"
 import  cors from "cors";
 import { AppError } from "./utils/AppError";
 import { errorHandler } from "./middleware/error.middleware";
+import { authRouter } from "./modules/auth/auth.route";
 const app:Application =express(); 
 
 app.use(cors())
@@ -14,6 +15,7 @@ app.get("/",(req:Request,res:Response)=>{
     })
 })
 
+app.use("/api/v1/auth",authRouter);
 // //test route
 // app.use("/test-error",()=>{
 //     throw new AppError(400,"Test Error")
