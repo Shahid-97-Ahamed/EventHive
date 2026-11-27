@@ -17,7 +17,7 @@ export const authenticate:RequestHandler=(req,_res,next)=>{
 
     //bearer token and just token both can use
 
-   const token= header.startsWith("Bearer")? header.slice(7) : header;
+   const token= header.startsWith("Bearer ")? header.slice(7) : header;
 
     try {
         const decoded =jwt.verify(token,config.jwtSecret) as unknown as AuthUser;
