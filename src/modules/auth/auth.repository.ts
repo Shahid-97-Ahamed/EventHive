@@ -16,7 +16,7 @@ export type PublicUser =Omit<UserRow,"password">;
 
 const findByEmail =async(email:string):Promise<UserRow | undefined>=>{
     const result =await pool.query(`
-        SELECT * FROM users EHERE email =$1`,[email]);
+        SELECT * FROM users WHERE  email =$1`,[email]);
         return result.rows[0];
 }
 
