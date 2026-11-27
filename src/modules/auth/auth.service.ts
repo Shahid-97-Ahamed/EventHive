@@ -4,7 +4,6 @@ import jwt from "jsonwebtoken"
 import { authRepository, Role } from './auth.repository';
 import { AppError } from "../../utils/AppError";
 import config from "../../config/env";
-import { ne } from "zod/v4/locales/index.js";
 
 //signup
 

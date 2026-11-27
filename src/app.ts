@@ -20,7 +20,14 @@ app.use("/api/v1/auth",authRouter);
 // app.use("/test-error",()=>{
 //     throw new AppError(400,"Test Error")
 // })
+import { authenticate, authorize } from "./middleware/auth.middleware";
 
+app.get("/test/me", authenticate, (req, res) => {
+  res.json({ user: req.user });
+});
+app.get("/test/organizer", authenticate, authorize("organizer"), (_req, res) => {
+  res.json({ ok: true });
+});
 //if any typr if route don't match!!!
 app.use((_req,_res,next)=>{
     next(new AppError(404,"Route not found"));

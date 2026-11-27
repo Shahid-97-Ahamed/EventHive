@@ -8,7 +8,7 @@ export const signupSchema =z.object({
 });
 
 export const loginSchema =z.object({
-    email:z.email("email is no valid").toLowerCase(),
+    email:z.email("email is not valid").toLowerCase(),
     password:z.string().min(1,"password is required")
 })
 
